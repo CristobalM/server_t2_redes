@@ -2,7 +2,6 @@
 #include "cxxopts/cxxopts.hpp"
 
 
-
 const char *SERVER_HOST = "server_host";
 const char *SERVER_PORT = "server_port";
 const char *MAX_SEQ_NUMBER = "max_sequence_number";

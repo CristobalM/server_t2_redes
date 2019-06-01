@@ -10,31 +10,30 @@
 const char *OUTPUT_FILENAME = "received_data.txt";
 
 ServerDataGluer::ServerDataGluer(ServerSubject *serverSubject) :
-ServerWorker(serverSubject),
-stopped(false)
-{
+        ServerWorker(serverSubject),
+        stopped(false) {
 }
 
 void ServerDataGluer::threadFun() {
   std::ofstream file;
   file.open(OUTPUT_FILENAME);
 
-  for(;;){
+  for (;;) {
     std::unique_lock<std::mutex> ul(mutex_queue);
-    cv_queue.wait(ul, [cs=this]{
+    cv_queue.wait(ul, [cs = this] {
       std::lock_guard<std::mutex> lg_stop(cs->mutex_stop);
       return cs->stopped || !cs->incoming_data.empty();
     });
 
     {
       std::lock_guard<std::mutex> lg_stop(mutex_stop);
-      if(stopped){
+      if (stopped) {
         break;
       }
     }
 
 
-    while(!incoming_data.empty()){
+    while (!incoming_data.empty()) {
       auto &next_data = incoming_data.front();
 
       file << next_data;

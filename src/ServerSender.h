@@ -46,15 +46,17 @@ class ServerSender : public ServerWorker {
 
 public:
   explicit ServerSender(ServerSubject *serverSubject);
+
   ~ServerSender();
 
   void threadFun() override;
 
-  void ackSeqnum(int seqnum, udp::endpoint& endpoint);
+  void ackSeqnum(int seqnum, udp::endpoint &endpoint);
 
   void stopSender();
 
   void sendAck(int seqn);
+
   void disconnect();
 };
 

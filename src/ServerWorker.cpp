@@ -8,10 +8,9 @@
 #include "ServerWorker.h"
 
 ServerWorker::ServerWorker(ServerSubject *serverSubject) :
-serverSubject(serverSubject),
-max_seq_digits(serverSubject->getMaxSeqNum()),
-max_seq_num((int) (std::pow(10, max_seq_digits) - 1))
-{
+        serverSubject(serverSubject),
+        max_seq_digits(serverSubject->getMaxSeqNum()),
+        max_seq_num((int) (std::pow(10, max_seq_digits) - 1)) {
 
 }
 
@@ -22,7 +21,7 @@ void ServerWorker::start() {
 ServerWorker::~ServerWorker() = default;
 
 void ServerWorker::join() {
-  if(thread && thread->joinable()){
+  if (thread && thread->joinable()) {
     thread->join();
   }
 }

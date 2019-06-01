@@ -10,7 +10,6 @@
 #include "Server.h"
 
 
-
 class InvalidServerInput : public std::exception {
   std::string output_msg;
 public:
@@ -34,6 +33,5 @@ public:
 };
 
 std::unique_ptr<Server> initServerFromInput(int argc, char **argv);
-
 
 #endif //PROJECT_INPUTPROCCESOR_H

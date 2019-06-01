@@ -20,12 +20,14 @@ class ServerReceiver : public ServerWorker {
 
 public:
   explicit ServerReceiver(ServerSubject *serverSubject);
+
   ~ServerReceiver() override;
 
   void threadFun() override;
 
   void deliverData(const std::string &data);
-  void ackSeqNum(int seqnum, udp::endpoint& endpoint);
+
+  void ackSeqNum(int seqnum, udp::endpoint &endpoint);
 
 };
 

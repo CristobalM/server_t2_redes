@@ -43,11 +43,10 @@ public:
           packet_data(packet_data),
           cached(false),
           retransmitted(false),
-          starting_time(0)
-          {
+          starting_time(0) {
   }
 
-  Packet(const Packet& other){
+  Packet(const Packet &other) {
     seqnum_digits = other.seqnum_digits;
     seqnum = other.seqnum;
     packet_data = other.packet_data;
@@ -57,7 +56,7 @@ public:
     starting_time = other.starting_time;
   }
 
-  Packet& operator=(Packet other){
+  Packet &operator=(Packet other) {
     std::swap(seqnum_digits, other.seqnum_digits);
     std::swap(seqnum, other.seqnum);
     std::swap(packet_data, other.packet_data);
@@ -109,7 +108,7 @@ public:
     return number;
   }
 
-  static std::string extractData(const std::string &raw_full_packet, int seqnum_digits){
+  static std::string extractData(const std::string &raw_full_packet, int seqnum_digits) {
     return raw_full_packet.substr(seqnum_digits + 32);
   }
 
@@ -131,10 +130,9 @@ public:
     }
     ss << std::to_string(seqnum);
     auto seqnum_str = ss.str();
-    if(ack_mode){
+    if (ack_mode) {
       ss << getHashFromString(seqnum_str);
-    }
-    else{
+    } else {
       ss << getHashFromString(packet_data);
       ss << packet_data;
     }
@@ -146,27 +144,27 @@ public:
     return packetString;
   }
 
-  void setRetransmitted(){
+  void setRetransmitted() {
     std::lock_guard<std::mutex> lg(retransmitted_mutex);
     retransmitted = true;
   }
 
-  bool getRetransmitted(){
+  bool getRetransmitted() {
     std::lock_guard<std::mutex> lg(retransmitted_mutex);
     return retransmitted;
   }
 
-  void startTimeoutCount(){
-    starting_time = std::chrono::duration_cast<std::chrono::milliseconds >(
-        std::chrono::system_clock::now().time_since_epoch()
+  void startTimeoutCount() {
+    starting_time = std::chrono::duration_cast<std::chrono::milliseconds>(
+            std::chrono::system_clock::now().time_since_epoch()
     );
   }
 
-  std::chrono::milliseconds getStartingTime(){
+  std::chrono::milliseconds getStartingTime() {
     return starting_time;
   }
 
-  void setSent(){
+  void setSent() {
     packet_sent = true;
   }
 

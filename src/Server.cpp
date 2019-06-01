@@ -5,14 +5,13 @@
 #include "Server.h"
 
 Server::Server(int max_seq_num, int server_port, int client_port, const std::string &server_host) :
-max_seq_num(max_seq_num),
-server_port(server_port),
-client_port(client_port),
-server_host(server_host),
-serverReceiver(this),
-serverSender(this),
-serverDataGluer(this)
-{
+        max_seq_num(max_seq_num),
+        server_port(server_port),
+        client_port(client_port),
+        server_host(server_host),
+        serverReceiver(this),
+        serverSender(this),
+        serverDataGluer(this) {
 }
 
 void Server::stopServer() {
@@ -50,6 +49,6 @@ void Server::deliverData(const std::string &deliveredData) {
 
 }
 
-void Server::ackSeqNum(int seqnum, udp::endpoint& endpoint) {
+void Server::ackSeqNum(int seqnum, udp::endpoint &endpoint) {
   serverSender.ackSeqnum(seqnum, endpoint);
 }

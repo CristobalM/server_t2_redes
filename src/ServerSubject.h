@@ -10,16 +10,19 @@
 
 using asio::ip::udp;
 
-class ServerSubject{
+class ServerSubject {
 public:
   virtual int getMaxSeqNum() = 0;
+
   virtual int getClientPort() = 0;
+
   virtual int getServerPort() = 0;
+
   virtual std::string getServerHost() = 0;
 
   virtual void deliverData(const std::string &deliveredData) = 0;
 
-  virtual void ackSeqNum(int seqnum, udp::endpoint& endpoint) = 0;
+  virtual void ackSeqNum(int seqnum, udp::endpoint &endpoint) = 0;
 
   virtual void stopServer() = 0;
 };

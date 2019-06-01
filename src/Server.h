@@ -16,7 +16,7 @@
 
 using asio::ip::udp;
 
-class Server : public ServerSubject{
+class Server : public ServerSubject {
   int max_seq_num;
   int server_port;
   int client_port;
@@ -31,15 +31,18 @@ public:
   Server(int max_seq_num, int server_port, int client_port, const std::string &server_host);
 
   int getMaxSeqNum() override;
+
   int getServerPort() override;
+
   int getClientPort() override;
+
   std::string getServerHost() override;
 
   int start();
 
   void deliverData(const std::string &deliveredData) override;
 
-  void ackSeqNum(int seqnum, udp::endpoint& endpoint) override;
+  void ackSeqNum(int seqnum, udp::endpoint &endpoint) override;
 
   void stopServer() override;
 

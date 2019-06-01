@@ -23,6 +23,7 @@ protected:
 
 public:
   explicit ServerWorker(ServerSubject *serverSubject);
+
   virtual ~ServerWorker();
 
   virtual void threadFun() = 0;

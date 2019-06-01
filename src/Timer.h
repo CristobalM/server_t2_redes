@@ -34,13 +34,11 @@ class Timer {
 
 public:
 
-  Timer()= default;
-
-
+  Timer() = default;
 
 
   Timer(int miliseconds, Fun fun, int delta_check_ms = 100, bool detach = false) :
-          milliseconds(miliseconds), fun(fun), stopped(false), delta_check_ms(delta_check_ms), detach(detach){
+          milliseconds(miliseconds), fun(fun), stopped(false), delta_check_ms(delta_check_ms), detach(detach) {
     start();
   }
 
@@ -120,7 +118,6 @@ public:
     return finished;
 
   }
-
 
 
 };

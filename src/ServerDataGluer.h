@@ -13,7 +13,6 @@
 #include "ServerWorker.h"
 
 
-
 class ServerDataGluer : public ServerWorker {
 
   std::mutex mutex_queue;
@@ -28,6 +27,7 @@ public:
   void threadFun() override;
 
   explicit ServerDataGluer(ServerSubject *serverSubject);
+
   ~ServerDataGluer() override;
 
   void deliverData(const std::string &deliveredData);
